@@ -102,6 +102,11 @@
   height: 50px;
 }
 
+.composeButton{
+  color: black;
+  background-color: blue; 
+}
+
 
 /*
 @media (prefers-reduced-motion: no-preference) {

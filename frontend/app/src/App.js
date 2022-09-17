@@ -2,11 +2,18 @@
 import test from './pixelated_ground1.jpg';
 import './App.css';
 import React from "react";
-import Popup from './Popup';
+import './Form.js'
+import Container from './Container.js';
+
 
 // actual creation of the website
 function App() {
-
+  const triggerText = 'Create Email';
+  const onSubmit = (event) => {
+    event.preventDefault(event);
+    console.log(event.target.name.value);
+    console.log(event.target.email.value);
+  };
  // replace button with calling data to it. event listens to if theres a new email
   return (
     <div className="App">
@@ -47,13 +54,10 @@ function App() {
         <img src = {test} className = "Ground-Default" alt = "ground" />
         </div>
         <div id = "compose">
-          <button>compose email</button>
-          <Popup trigger={true}>
-            <h3>smack my ass like a drum</h3>
-          </Popup>
+          <button className = "composeButton">compose email</button>
         </div>
+        <Container triggerText={triggerText} onSubmit={onSubmit} />
       </h5>
-
     </div>
   );
 }

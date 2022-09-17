@@ -80,4 +80,46 @@ class MailDatabase():
     def get_new_id(self):
         self.curr_id += 1
         return self.curr_id
-        
+
+class GameDatabase():
+    def __init__(self, db_file):
+        self.db_file = db_file
+        self.stats_table = """CREATE TABLE IF NOT EXISTS stats(user_id, points, emails_sent, emails_received, fastest_response); """
+        self.conn = create_connection(self.db_file)
+        self.cur = self.conn.cursor()
+        create_table(self.conn, self.stats_table)
+
+
+    #For testing purposes this will only have one user but since we're using a database can be done wiht multiple users
+    def set_stats(self,user_id,points,emails_sent,emails_received,fastest_response):
+        create_tuple = (user_id, points, emails_sent, emails_received, fastest_response)
+        self.cur.execute("INSERT INTO stats VALUES(?,?,?,?,?)", create_tuple)
+        self.conn.commit()
+        return self.cur.lastrowid
+
+    def get_stats(self):
+        self.cur.execute("SELECT * FROM stats")
+        stats = self.cur.fetchone()
+        print(stats)
+        return stats
+
+    def update_generic(self, key, value, user_id=0): #possibly for more users in the future
+        sq1 = f'''UPDATE stats
+                  SET {key} = ?
+                  WHERE user_id = ?
+                    '''
+        self.cur.execute(sq1,(value, user_id))
+        self.conn.commit()
+
+    def update_points(self,new_points):
+        self.update_generic('points', new_points)
+
+    def update_emails_sent(self, new_emails_sent):
+        self.update_generic('emails_sent', new_emails_sent)
+
+    def update_emails_received(self, new_emails_received):
+        self.update_generic('emails_received', new_emails_received)
+
+    def update_fastest_response(self, new_fastest_response):
+        self.update_generic('fastest_response', new_fastest_response)
+

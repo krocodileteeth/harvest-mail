@@ -70,6 +70,9 @@ class MailHandler():
         mail = Mail(self.db.get_new_id(), sender, receiver, subject, content, prev_id=prev_id)
         self.db.add_mail(mail)
 
+        if prev_id != -1:
+            self.db.update_mail_by_id(prev_id, 'next_id', mail.id)
+
         self.game.handle_receive()
 
     def read_mail(self):

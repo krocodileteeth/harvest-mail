@@ -37,9 +37,8 @@ def send_mail():
 def game_status():
     return game.get_status(mail.get_all_mail())
 
-def add_fake_date():
-    game.reset_database()
-
+@app.route('/test/phase/0')
+def test_phase_0():
     mail0 = {"id": mail.db.get_new_id(), "sender": "sender", "receiver": "receiver", "subject": "s1", "content": "hello", "next_id":-1, "prev_id":-1}
     mail1 = {"id": mail.db.get_new_id(), "sender": "sender", "receiver": "receiver", "subject": "re: s1", "content": "hi", "next_id":-1, "prev_id": 0}
     mail2 = {"id": mail.db.get_new_id(), "sender": "sender", "receiver": "receiver", "subject": "re: re: s1", "content": "bye", "next_id":-1, "prev_id": 1}
@@ -50,10 +49,21 @@ def add_fake_date():
     mail.handle_reply(Mail(**mail2))
     mail.handle_new_sent(Mail(**mail3))
 
+    return "phase 0"
+
+@app.route('/test/phase/1')
+def test_phase_1():
     mail.receive_mail('outsider', 'user', 'sub', 'hi')
 
-    mail4 = {"id": mail.db.get_new_id(), "sender": "user", "receiver": "outside", "subject": "re: sub", "content": "heh", "next_id":-1, "prev_id": 4}
-    mail.handle_reply(Mail(**mail4))
+    mail5 = {"id": mail.db.get_new_id(), "sender": "user", "receiver": "outside", "subject": "re: sub", "content": "heh", "next_id":-1, "prev_id": 4}
+    mail.handle_reply(Mail(**mail5))
+    return "phase 1"
 
+@app.route('/test/phase/2')
+def test_phase_2():
+    mail.receive_mail('outsider', 'user', 're: re: sub', 'hello', prev_id=5)
+    mail7 = {"id": mail.db.get_new_id(), "sender": "user", "receiver": "outside", "subject": "re: re: re: sub", "content": "heh heh", "next_id":-1, "prev_id": 6}
+    mail.handle_reply(Mail(**mail7))
+    return "phase 2"
 
-add_fake_date()
+game.reset_database()

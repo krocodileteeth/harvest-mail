@@ -100,7 +100,6 @@ class GameDatabase():
     def get_stats(self):
         self.cur.execute("SELECT * FROM stats")
         stats = self.cur.fetchone()
-        print(stats)
         return stats
 
     def update_generic(self, key, value, user_id=0): #possibly for more users in the future

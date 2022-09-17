@@ -8,7 +8,6 @@ import {EmailContainer} from './EmailContainer.js';
 
 // get server_url/mail/status : gives json objects 
 
-
 // actual creation of the website
 function App() {
   let flatten_list = (l) => {
@@ -20,14 +19,13 @@ function App() {
     }
     return l_out;
   };
-  
   // initialzing data
   const[data, setData] = useState({data: []});
   const[isLoading, setIsLoading] = useState(false);
   const[err, setErr] = useState('');
-  // const openInNewTab = url => {
-  //   window.open(url, '_blank', 'noopener,noreferrer');
-  // };
+  const openInNewTab = url => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
 
   const handleClick = async () => {
     setIsLoading(true);
@@ -56,7 +54,6 @@ function App() {
     }
   };
 
-
   const triggerText = "compose email";
   const shopTrigger = "view shop";
   const openTrigger = "open email";
@@ -69,17 +66,6 @@ function App() {
   useEffect(() => {
     fetch("/mail/status").then((res) =>
     res.json().then((data) => {
-        // Setting a data from api
-        // setdata(git swicd{
-        //     id: data.id,
-        //     sender: data.sender,
-        //     receiver: data.receiver,
-        //     content: data.content,
-        //     read: data.read,
-        //     next_id: data.next_id,
-        //     prev_id: data.prev_id,
-        //     timestamp: data.timestamp
-        //   });
         document.title = data;
         console.log(data);
       })
@@ -99,15 +85,15 @@ function App() {
       </header>
       <br/>
       <h4>      
-        {/* <div id = "shop">
-          <button onClick={() => openInNewTab('https://google.com')}> view shop </button>
-        </div> */}
+        <div id = "shop">
+          <button onClick={() => openInNewTab('https://www.amazon.com/s?k=flowers&i=amazon-devices&ref=nb_sb_noss')}> view shop </button>
+        </div>
         <div className = "email-click">
               {err && <h2>{err}</h2>}
 
               <button onClick={handleClick}>refresh emails</button>
               {isLoading && <h4>Loading...</h4>}
-            
+
             </div>
             <div>
         </div>
@@ -123,21 +109,14 @@ function App() {
         </div>
         <p className = "Mail-content">
           <br/>
-          {console.log(data)}
           {flatten_list(data).map(mail => {
                 return (
                   <div key={mail.id}>
-                            <EmailContainer triggerText={openTrigger} onSubmit={onSubmit} data={data} />
-
                     <button>{mail.sender} &emsp; {mail.content}  &emsp;{mail.timestamp}</button>
             <br/>
           </div>
         );
           })}
-
-            <div className = "email-click" >
-            {/* <button>{data.Sender} &emsp; {data.Subject} &emsp; {data.Timestamp}</button> */}
-            </div>
             <br/>
         </p>
       </h4>
@@ -145,8 +124,9 @@ function App() {
         <div>
         <img src = {test} className = "Ground-Default" alt = "ground" />
         </div>
+        <div id = "content">
         <Container triggerText={triggerText} onSubmit={onSubmit} />
-        <Container2 triggerText={shopTrigger} onSubmit={onSubmit} />
+        </div>
       </h5>
 
     </div>

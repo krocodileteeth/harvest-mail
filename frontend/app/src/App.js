@@ -1,49 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
-<<<<<<< HEAD
-import React from "react";
-import './Form.js'
-import Container from './Container.js';
-
-=======
->>>>>>> jtecson/frontendstuff
-
-function App() {
-<<<<<<< HEAD
-  const triggerText = 'Create Email';
-  const onSubmit = (event) => {
-    event.preventDefault(event);
-    console.log(event.target.name.value);
-    console.log(event.target.email.value);
-  };
- // replace button with calling data to it. event listens to if theres a new email
-=======
->>>>>>> jtecson/frontendstuff
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
 // import logo from './logo.svg';
 import test from './pixelated_ground1.jpg';
 import './App.css';
 import React, { useState, useEffect } from "react";
+import {Container} from './Container.js';
 
 // get server_url/mail/status : gives json objects 
 
@@ -55,6 +14,13 @@ function App() {
   const[data, setData] = useState({data: []});
   const[isLoading, setIsLoading] = useState(false);
   const[err, setErr] = useState('');
+
+  const triggerText = "compose email";
+  const onSubmit = (event) => {
+    event.preventDefault(event);
+    console.log(event.target.name.value);
+    console.log(event.target.email.value);
+  }
 
   const handleClick = async () => {
     setIsLoading(true);
@@ -88,7 +54,7 @@ function App() {
     fetch("/mail/status").then((res) =>
     res.json().then((data) => {
         // Setting a data from api
-        // setdata({
+        // setdata(git swicd{
         //     id: data.id,
         //     sender: data.sender,
         //     receiver: data.receiver,
@@ -150,6 +116,7 @@ function App() {
         <div>
         <img src = {test} className = "Ground-Default" alt = "ground" />
         </div>
+        <Container triggerText={triggerText} onSubmit={onSubmit} />
         <div id = "compose">
           <button>compose email</button>
         </div>

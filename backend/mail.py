@@ -1,5 +1,5 @@
 from flask import Flask, request
-from flask_restful import Api, Resource, reqparse
+import database
 class Mail():
     def __init__(self, id, sender, receiver, subject, content, next_id=-1, prev_id=-1, read=False):
         self.id = id
@@ -9,30 +9,35 @@ class Mail():
         self.content = content
         self.read = read
 
-def handle_reply(mail):
-    pass
+class MailHandler():
+    def __init__(self, db_file):
+        self.db_file = db_file
+        self.db = database.create_connection(db_file)
 
-def handle_new_sent(mail):
-    pass
+    def handle_reply(self, mail):
+        pass
 
-def get_new_id():
-    return 0
+    def handle_new_sent(self, mail):
+        pass
 
-def get_status():
-    return "Status"
+    def get_new_id(self):
+        return 0
 
-def read_mail():
-    id = request.args.get('id')
-    return id
+    def get_status(self):
+        return "Status"
 
-def send_mail():
-    mail = Mail(get_new_id(), read=True, **request.args)
+    def read_mail(self):
+        id = request.args.get('id')
+        return id
 
-    if 'prev_id' in request.args:
-        mail.prev_id = request.args.get('prev_id')
-        handle_reply(mail)
-    else:
-        handle_new_sent(mail)
+    def send_mail(self):
+        mail = Mail(self.get_new_id(), read=True, **request.args)
 
-    return get_status()
+        if 'prev_id' in request.args:
+            mail.prev_id = request.args.get('prev_id')
+            self.handle_reply(mail)
+        else:
+            self.handle_new_sent(mail)
+
+        return self.get_status()
     

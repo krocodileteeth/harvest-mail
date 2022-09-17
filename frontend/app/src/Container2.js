@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Modal } from './Modal';
+import { Modal2 } from './Modal2';
 import TriggerButton from './TriggerButton';
 
-export class Container extends Component {
+export class Container2 extends Component {
   state = { isShown: false };
   showModal = () => {
     this.setState({ isShown: true }, () => {
@@ -37,8 +37,8 @@ export class Container extends Component {
           triggerText={this.props.triggerText}
         />
         {this.state.isShown ? (
-          <Modal
-            onSubmit={this.closeModal}
+          <Modal2
+            onSubmit={this.props.onSubmit}
             modalRef={(n) => (this.modal = n)}
             buttonRef={(n) => (this.closeButton = n)}
             closeModal={this.closeModal}
@@ -51,4 +51,4 @@ export class Container extends Component {
   }
 }
 
-export default Container;
+export default Container2;

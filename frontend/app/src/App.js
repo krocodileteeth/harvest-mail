@@ -3,6 +3,7 @@ import test from './pixelated_ground1.jpg';
 import './App.css';
 import React, { useState, useEffect } from "react";
 import {Container} from './Container.js';
+import {Container2} from './Container2.js';
 
 // get server_url/mail/status : gives json objects 
 
@@ -14,9 +15,9 @@ function App() {
   const[data, setData] = useState({data: []});
   const[isLoading, setIsLoading] = useState(false);
   const[err, setErr] = useState('');
-  const openInNewTab = url => {
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
+  // const openInNewTab = url => {
+  //   window.open(url, '_blank', 'noopener,noreferrer');
+  // };
 
   const handleClick = async () => {
     setIsLoading(true);
@@ -47,6 +48,7 @@ function App() {
 
 
   const triggerText = "compose email";
+  const shopTrigger = "view shop";
   const onSubmit = (event) => {
     event.preventDefault(event);
     console.log(event.target.name.value);
@@ -86,9 +88,9 @@ function App() {
       </header>
       <br/>
       <h4>      
-        <div id = "shop">
+        {/* <div id = "shop">
           <button onClick={() => openInNewTab('https://google.com')}> view shop </button>
-        </div>
+        </div> */}
         <div className = "email-click">
               {err && <h2>{err}</h2>}
 
@@ -97,7 +99,6 @@ function App() {
             
             </div>
             <div>
-          <button> view shop </button>
         </div>
         <div id = "nav">
           <ul>
@@ -124,9 +125,7 @@ function App() {
         <img src = {test} className = "Ground-Default" alt = "ground" />
         </div>
         <Container triggerText={triggerText} onSubmit={onSubmit} />
-        <div id = "compose">
-          <button>compose email</button>
-        </div>
+        <Container2 triggerText={shopTrigger} onSubmit={onSubmit} />
       </h5>
 
     </div>

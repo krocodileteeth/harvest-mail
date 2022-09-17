@@ -4,6 +4,7 @@ import './App.css';
 import React, { useState, useEffect } from "react";
 import {Container} from './Container.js';
 import {Container2} from './Container2.js';
+import {EmailContainer} from './EmailContainer.js';
 
 // get server_url/mail/status : gives json objects 
 
@@ -58,6 +59,7 @@ function App() {
 
   const triggerText = "compose email";
   const shopTrigger = "view shop";
+  const openTrigger = "open email";
   const onSubmit = (event) => {
     event.preventDefault(event);
     console.log(event.target.name.value);
@@ -121,9 +123,12 @@ function App() {
         </div>
         <p className = "Mail-content">
           <br/>
+          {console.log(data)}
           {flatten_list(data).map(mail => {
                 return (
                   <div key={mail.id}>
+                            <EmailContainer triggerText={openTrigger} onSubmit={onSubmit} data={data} />
+
                     <button>{mail.sender} &emsp; {mail.content}  &emsp;{mail.timestamp}</button>
             <br/>
           </div>

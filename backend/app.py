@@ -5,10 +5,10 @@ from database import MailDatabase
 import stats
 
 MAIL_DATABASE = 'mail.db'
-mail_db = MailDatabase(MAIL_DATABASE)
 
 app = Flask(__name__)
-mail = MailHandler(mail_db)
+mail = MailHandler('mail.db')
+mail = MailHandler(':memory:')
 
 @app.route('/')
 def hello():

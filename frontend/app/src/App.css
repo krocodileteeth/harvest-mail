@@ -101,6 +101,11 @@
   height: -50px;
 }
 
+#content {
+  text-align:right;
+  height: -50px;
+}
+
 .modal-cover {
   position: fixed;
   top: 0;

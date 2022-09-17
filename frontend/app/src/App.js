@@ -24,9 +24,6 @@ function App() {
   const[data2, setData2] = useState({data2: []});
   const[isLoading, setIsLoading] = useState(false);
   const[err, setErr] = useState('');
-  const openInNewTab = url => {
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
 
   const handleClick = async () => {
     setIsLoading(true);
@@ -121,12 +118,9 @@ function App() {
       </header>
       <br/>
       <h4>      
-        <div id = "shop">
-          <button onClick={() => openInNewTab('https://www.amazon.com/s?k=flowers&i=amazon-devices&ref=nb_sb_noss')}> view shop </button>
-        </div>
         <div className = "email-click">
               {err && <h2>{err}</h2>}
-
+    
               <button onClick={handleClick}>refresh emails</button>
               
               <br/>
@@ -157,11 +151,15 @@ function App() {
           {flatten_list(data).map(mail => {
                 return (
                   <div key={mail.id}>
+                    <EmailContainer triggerText={openTrigger} onSubmit={onSubmit} data={data} />
                     <button>{mail.sender} &emsp; {mail.content}  &emsp;{mail.timestamp}</button>
             <br/>
           </div>
         );
           })}
+
+            <div className = "email-click" >
+            </div>
             <br/>
         </p>
       </h4>
@@ -171,6 +169,7 @@ function App() {
         </div>
         <div id = "content">
         <Container triggerText={triggerText} onSubmit={onSubmit} />
+        <Container2 triggerText={shopTrigger} onSubmit={onSubmit} />
         </div>
       </h5>
 

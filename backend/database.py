@@ -40,3 +40,6 @@ class MailDatabase():
 
     def get_mail_by_id(self, id):
         pass
+
+    def update_mail_by_id(self, id, key, value):
+        pass

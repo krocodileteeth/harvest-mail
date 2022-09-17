@@ -1,5 +1,5 @@
-from flask import Flask, request
-import database
+from flask import Flask, request, jsonify
+from database import MailDatabase
 import time
 class Mail():
     def __init__(self, id, sender, receiver, subject, content, next_id=-1, prev_id=-1, read=False):
@@ -13,25 +13,39 @@ class Mail():
         self.prev_id = prev_id
         self.timestamp = time.time()
 
+    def toJSON(self):
+        return self.__dict__
+
 class MailHandler():
-    def __init__(self, db_file):
-        self.db_file = db_file
-        self.db = database.create_connection(db_file)
+    def __init__(self, db):
+        self.db = db
+        self.curr_id = -1
 
     def handle_reply(self, mail):
-        pass
+        prev_id = mail.prev_id
+        self.db.add_mail(mail)
+        self.db.update_mail_by_id(prev_id, 'next_id', mail.id)
+        prev_mail = self.db.get_mail_by_id(prev_id)
 
     def handle_new_sent(self, mail):
-        pass
+        self.db.add_mail(mail)
 
     def get_new_id(self):
-        return 0
+        self.curr_id += 1
+        return self.curr_id
 
     def get_status(self):
-        return "Status"
+        all_mail = self.db.get_all_mail()
+        all_mail_mapped = list(map(lambda x : x.toJSON(), all_mail))
+        return jsonify(all_mail_mapped)
+
+    def receive_mail(self, sender, receiver, subject, content, prev_id=-1):
+        mail = Mail(self.get_new_id(), sender, receiver, subject, content, prev_id=prev_id)
+        self.db.add_mail(mail)
 
     def read_mail(self):
         id = request.args.get('id')
+        self.db.update_mail_by_id(id, 'read', True)
         return id
 
     def send_mail(self):

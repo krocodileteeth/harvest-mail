@@ -1,8 +1,7 @@
 from flask import Flask, request
 from flask_restful import Api, Resource, reqparse
-
 class Mail():
-    def __init__(self, id, sender, receiver, subject, content, read=False):
+    def __init__(self, id, sender, receiver, subject, content, next_id=-1, prev_id=-1, read=False):
         self.id = id
         self.sender = sender
         self.receiver = receiver
@@ -28,12 +27,9 @@ def read_mail():
 
 def send_mail():
     mail = Mail(get_new_id(), read=True, **request.args)
-    mail.reply_id = -1
 
-    if 'reply_id' in request.args:
-        mail.reply_id = request.args.get('reply_id')
-
-    if mail.reply_id >= 0:
+    if 'prev_id' in request.args:
+        mail.prev_id = request.args.get('prev_id')
         handle_reply(mail)
     else:
         handle_new_sent(mail)

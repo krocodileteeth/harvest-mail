@@ -1,12 +1,14 @@
 from flask import Flask
 import game
 from mail import MailHandler
+from database import MailDatabase
 import stats
 
 MAIL_DATABASE = 'mail.db'
+mail_db = MailDatabase(MAIL_DATABASE)
 
 app = Flask(__name__)
-mail = MailHandler(MAIL_DATABASE)
+mail = MailHandler(mail_db)
 
 @app.route('/')
 def hello():

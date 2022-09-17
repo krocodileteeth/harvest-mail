@@ -3,6 +3,9 @@ from flask_cors import CORS
 from game import GameHandler
 from mail import MailHandler, Mail
 import stats
+from dotenv import load_dotenv
+
+load_dotenv()
 
 MAIL_DATABASE = 'mail.db'
 
@@ -28,6 +31,10 @@ def read_mail():
 @app.route('/mail/send')
 def send_mail():
     return mail.send_mail()
+
+@app.route('/game/status')
+def game_status():
+    return game.get_status(mail.get_all_mail())
 
 def add_fake_date():
     mail0 = {"id": mail.db.get_new_id(), "sender": "s", "receiver": "r", "subject": "s", "content": "c", "next_id":-1, "prev_id":-1}

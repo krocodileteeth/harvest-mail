@@ -34,10 +34,9 @@ class MailHandler():
 
         self.game.handle_reply(prev_mail.timestamp, mail.timestamp)
 
-        return prev_id
-
     def handle_new_sent(self, mail):
         self.db.add_mail(mail)
+        self.game.handle_send()
 
     def search(self, chain, all_mail):
         while True:
@@ -46,6 +45,12 @@ class MailHandler():
                 return chain
             
             chain.append(all_mail[curr['next_id']])
+
+    def get_all_mail(self):
+        all_mail = self.db.get_all_mail()
+        all_mail_mapped = list(map(lambda x : Mail(*x), all_mail))
+
+        return all_mail_mapped
 
     def get_status(self):
         all_mail = self.db.get_all_mail()

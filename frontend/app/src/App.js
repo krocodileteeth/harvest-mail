@@ -37,10 +37,16 @@ function App() {
           emails
           <br/>
         </p>
+        <div id = "shop">
+          <button> view shop </button>
+        </div>
       </h4>
       <h5>
         <div>
         <img src = {test} className = "Ground-Default" alt = "ground" />
+        </div>
+        <div id = "compose">
+          <button>compose email</button>
         </div>
       </h5>
 

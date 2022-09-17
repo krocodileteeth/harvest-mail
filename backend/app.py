@@ -19,4 +19,4 @@ def read_mail():
 
 @app.route('/mail/send')
 def send_mail():
-    return mail.send_mail(mail)
+    return mail.send_mail()

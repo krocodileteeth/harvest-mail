@@ -26,7 +26,6 @@
   color: white;
 }
 
-
 /*
 .Mail-content {
   color: white;
@@ -72,64 +71,28 @@
   margin-right:20%;
 }
 
-
-/*
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.email-click {
+  text-align: left;
+  width: 2000px;
+  height: 100px;
 }
-*/
 
 .Ground-Default {
   border-radius: 30px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 1%;
   width: 50%;
   height: 150px;
 }
 
 #compose {
   text-align: right;
-  margin-top: -5%;
-  width: 100px;
-  height: 30px;
-
+  height: -20px;
 }
 
 #shop {
   text-align: right;
   height: 50px;
 }
-
-.composeButton{
-  color: black;
-  background-color: blue; 
-}
-
-
-/*
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-*/
-
-
-
-

@@ -35,12 +35,12 @@ def send_mail():
 
 @app.route('/game/status')
 def game_status():
-    return game.get_status(mail.get_all_mail())
+    return game.get_status()
 
 @app.route('/test/phase/0')
 def test_phase_0():
     mail0 = {"id": mail.db.get_new_id(), "sender": "sender", "receiver": "receiver", "subject": "s1", "content": "hello", "next_id":-1, "prev_id":-1}
-    mail1 = {"id": mail.db.get_new_id(), "sender": "sender", "receiver": "receiver", "subject": "re: s1", "content": "hi", "next_id":-1, "prev_id": 0}
+    mail1 = {"id": mail.db.get_new_id(), "sender": "receiver", "receiver": "sender", "subject": "re: s1", "content": "hi", "next_id":-1, "prev_id": 0}
     mail2 = {"id": mail.db.get_new_id(), "sender": "sender", "receiver": "receiver", "subject": "re: re: s1", "content": "bye", "next_id":-1, "prev_id": 1}
     mail3 = {"id": mail.db.get_new_id(), "sender": "sender", "receiver": "receiver", "subject": "s2", "content": "heh", "next_id":-1, "prev_id": -1}
 

@@ -9,14 +9,14 @@ app = Flask(__name__)
 def hello():
     return 'This is a server!'
 
-@app.get('/mail/status')
+@app.route('/mail/status')
 def mail_status():
     return mail.get_status()
 
-@app.post('/mail/read')
+@app.route('/mail/read')
 def read_mail():
     return mail.read_mail()
 
-@app.post('/mail/send')
+@app.route('/mail/send')
 def send_mail():
-    return mail.send_mail()
+    return mail.send_mail(mail)

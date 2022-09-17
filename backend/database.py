@@ -27,3 +27,16 @@ def create_table(conn, create_table_sql):
         c.execute(create_table_sql)
     except Error as e:
         print(e)
+
+class MailDatabase():
+    def __init__(self, db_file):
+        pass
+
+    def add_mail(self, mail):
+        pass
+
+    def get_all_mail(self):
+        pass
+
+    def get_mail_by_id(self, id):
+        pass

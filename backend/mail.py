@@ -20,8 +20,9 @@ class Mail():
         return self.__dict__
 
 class MailHandler():
-    def __init__(self, db_file):
+    def __init__(self, db_file, game):
         self.db = MailDatabase(db_file)
+        self.game = game
         self.curr_id = -1
 
     def handle_reply(self, mail):
@@ -29,6 +30,9 @@ class MailHandler():
         self.db.add_mail(mail)
         self.db.update_mail_by_id(prev_id, 'next_id', mail.id)
         prev_mail = self.db.get_mail_by_id(prev_id)
+        prev_mail = Mail(*prev_mail)
+
+        self.game.handle_reply(prev_mail.timestamp, mail.timestamp)
 
         return prev_id
 
@@ -55,8 +59,6 @@ class MailHandler():
                 chains.append(self.search(new_chain, all_mail_mapped))
 
         response = jsonify(chains)
-        # response.headers.add('Access-Control-Allow-Origin', '*')
-
         return response
 
     def receive_mail(self, sender, receiver, subject, content, prev_id=-1):

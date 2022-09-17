@@ -66,7 +66,7 @@ class MailDatabase():
 
     def get_mail_by_id(self, id): #DK if it will work this way compared to using fetching all and searching the list but me will try it out; less lines 
         self.cur.execute("SELECT * FROM mail WHERE id=?",(id,))
-        mail = self.cur.fetchone #hopefully this will work if not im gonna have to code a regular list search function.
+        mail = self.cur.fetchone() #hopefully this will work if not im gonna have to code a regular list search function.
         return mail
 
     def update_mail_by_id(self, id, key, value):

@@ -13,6 +13,9 @@ function App() {
   const[data, setData] = useState({data: []});
   const[isLoading, setIsLoading] = useState(false);
   const[err, setErr] = useState('');
+  const openInNewTab = url => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
 
   const handleClick = async () => {
     setIsLoading(true);
@@ -21,8 +24,7 @@ function App() {
       const response = await fetch('http://172.26.50.101:5000/mail/status', {
         method: 'GET',
         headers: {
-          Accept: 'application/json',
-          CORS: 'disable'
+          ContentType: 'application/json'
         },
       });
 
@@ -45,17 +47,6 @@ function App() {
   useEffect(() => {
     fetch("/mail/status").then((res) =>
     res.json().then((data) => {
-        // Setting a data from api
-        // setdata({
-        //     id: data.id,
-        //     sender: data.sender,
-        //     receiver: data.receiver,
-        //     content: data.content,
-        //     read: data.read,
-        //     next_id: data.next_id,
-        //     prev_id: data.prev_id,
-        //     timestamp: data.timestamp
-        //   });
         document.title = data;
         console.log(data);
       })
@@ -76,8 +67,15 @@ function App() {
       <br/>
       <h4>      
         <div id = "shop">
-          <button> view shop </button>
+          <button onClick={() => openInNewTab('https://google.com')}> view shop </button>
         </div>
+        <div className = "email-click">
+              {err && <h2>{err}</h2>}
+
+              <button onClick={handleClick}>refresh emails</button>
+              {isLoading && <h4>Loading...</h4>}
+            
+            </div>
         <div id = "nav">
           <ul>
             <li><a href = "#inbox">Inbox </a></li>
@@ -91,17 +89,6 @@ function App() {
         <p className = "Mail-content">
           emails go here lmao
           <br/>
-            <div className = "email-click" >
-            <button>{data.Sender} &emsp; {data.Subject} &emsp; {data.Timestamp}</button>
-            </div>
-            <br/>
-            <div>
-              {err && <h2>{err}</h2>}
-
-              <button onClick={handleClick}>Fetch data</button>
-              {isLoading && <h2>Loading...</h2>}
-            
-            </div>
         </p>
       </h4>
       <h5>

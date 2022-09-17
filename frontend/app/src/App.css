@@ -1,113 +1,27 @@
-*{
-  margin : 0;
-  padding : 2;
-}
-
 .App {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  top : 100 px;
-  justify-content: left;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  padding: 30px;
-}
-
-.App-header {
-  text-align: left;
-  flex-direction: column;
-  align-items: left;
-  top : 100 px;
-  justify-content: left;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-
-/*
-.Mail-content {
-  color: white;
-  font-family: Arial;
   text-align: center;
-  align-items: center;
-}
-*/
-
-#nav {
-  height: 0px;
-  background-color: green;
 }
 
-#nav ul {
-  list-style-type: none;
-  padding: 0px;
-  margin: 0px;
-}
-
-#nav ul li a {
-  text-decoration: none;
-  padding: 50px;
-  line-height: 20px;
-  font-size: 20px;
-  display: inline-block;
-  color: rgb(255, 255, 255);
-}
-
-#nav ul li a:hover {
-  color: rgb(63, 50, 79);
-  background-color: rgb(249, 143, 255);
-  border-radius: 20px;
-}
-
-.Mail-content {
-  text-align: center;
-  background-color: pink;
-  padding: 200px;
-  border-radius: 20px;
-  margin-top: 2%;
-  margin-left: 20%;
-  margin-right:20%;
-}
-
-
-/*
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-*/
 
-.Ground-Default {
-  border-radius: 30px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-  height: 150px;
-}
-
-#compose {
-  text-align: right;
-  margin-top: -5%;
-  width: 100px;
-  height: 30px;
-
-}
-
-#shop {
-  text-align: right;
-  height: 50px;
-}
-
-
-/*
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
 .App-link {
@@ -122,9 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-*/
-
-
-
-

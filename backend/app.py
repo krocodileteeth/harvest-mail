@@ -8,7 +8,7 @@ MAIL_DATABASE = 'mail.db'
 
 app = Flask(__name__)
 mail = MailHandler('mail.db')
-mail = MailHandler(':memory:')
+# mail = MailHandler(':memory:')
 
 @app.route('/')
 def hello():

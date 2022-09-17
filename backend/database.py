@@ -42,10 +42,15 @@ class MailDatabase():
                                         read,
                                         timestamp
                                     ); """
+
         self.conn = create_connection(self.db_file)
         self.cur = self.conn.cursor()
-        create_table(self.conn,self.mail_table)
-        self.curr_id = 0
+        create_table(self.conn, self.mail_table)
+        res = self.cur.execute("SELECT MAX(id) FROM mail")
+        self.curr_id = res.fetchone()[0]
+        if self.curr_id is None:
+            self.curr_id = -1
+        print("CURR_ID", self.curr_id)
 
     def add_mail(self, mail):
         create_tuple = (mail.id,mail.sender,mail.receiver,mail.subject,mail.content,mail.next_id,mail.prev_id,mail.read,mail.timestamp)
@@ -73,7 +78,6 @@ class MailDatabase():
         self.conn.commit()
 
     def get_new_id(self):
-        id = self.curr_id
         self.curr_id += 1
-        return id
+        return self.curr_id
         

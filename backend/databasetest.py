@@ -35,7 +35,7 @@ def create_table(conn, create_table_sql):
 
 
 
-def manin():
+def main():
     database = r"C:\sqlite\db\pythonsqlite.db"
 
     sql_create_email_table = """ CREATE TABLE IF NOT EXISTS emails (id, sender, receiver, subject, content,read); """

@@ -1,12 +1,13 @@
 from flask import Flask
+from flask_cors import CORS
 import game
 from mail import MailHandler
-from database import MailDatabase
 import stats
 
 MAIL_DATABASE = 'mail.db'
 
 app = Flask(__name__)
+CORS(app)
 mail = MailHandler('mail.db')
 # mail = MailHandler(':memory:')
 

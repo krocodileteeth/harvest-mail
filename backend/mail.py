@@ -54,7 +54,10 @@ class MailHandler():
                 new_chain = [m]
                 chains.append(self.search(new_chain, all_mail_mapped))
 
-        return jsonify(chains)
+        response = jsonify(chains)
+        # response.headers.add('Access-Control-Allow-Origin', '*')
+
+        return response
 
     def receive_mail(self, sender, receiver, subject, content, prev_id=-1):
         mail = Mail(self.db.get_new_id(), sender, receiver, subject, content, prev_id=prev_id)

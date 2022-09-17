@@ -1,6 +1,7 @@
 from flask import Flask
 import time
 
+
 class GameHandler():
     def __init__(self):
         pass
@@ -14,4 +15,3 @@ class GameHandler():
     def reset_limits(self):
         pass
 
-    

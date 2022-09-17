@@ -15,6 +15,18 @@ export const Form = ({ onSubmit }) => {
           id="email"
           placeholder="name@example.com"
         />
+        <div classname="form-group">
+          <label htmlFor="msg" id="msg">
+            {" "}
+            Message{" "}
+          </label>
+          <textarea
+            type="email"
+            className="form-control"
+            id="email"
+            placeholder="Hello, world!"
+          />
+        </div>
       </div>
       <div className="form-group">
         <button className="form-control btn btn-primary" type="submit">
@@ -25,4 +37,3 @@ export const Form = ({ onSubmit }) => {
   );
 };
 export default Form;
-

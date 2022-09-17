@@ -2,6 +2,7 @@
 import test from './pixelated_ground1.jpg';
 import './App.css';
 import React, { useState, useEffect } from "react";
+import {Container} from './Container.js';
 
 // get server_url/mail/status : gives json objects 
 
@@ -44,9 +45,28 @@ function App() {
     }
   };
 
+
+  const triggerText = "compose email";
+  const onSubmit = (event) => {
+    event.preventDefault(event);
+    console.log(event.target.name.value);
+    console.log(event.target.email.value);
+  }
+
   useEffect(() => {
     fetch("/mail/status").then((res) =>
     res.json().then((data) => {
+        // Setting a data from api
+        // setdata(git swicd{
+        //     id: data.id,
+        //     sender: data.sender,
+        //     receiver: data.receiver,
+        //     content: data.content,
+        //     read: data.read,
+        //     next_id: data.next_id,
+        //     prev_id: data.prev_id,
+        //     timestamp: data.timestamp
+        //   });
         document.title = data;
         console.log(data);
       })
@@ -76,6 +96,9 @@ function App() {
               {isLoading && <h4>Loading...</h4>}
             
             </div>
+            <div>
+          <button> view shop </button>
+        </div>
         <div id = "nav">
           <ul>
             <li><a href = "#inbox">Inbox </a></li>
@@ -89,12 +112,18 @@ function App() {
         <p className = "Mail-content">
           emails go here lmao
           <br/>
+          
+            <div className = "email-click" >
+            <button>{data.Sender} &emsp; {data.Subject} &emsp; {data.Timestamp}</button>
+            </div>
+            <br/>
         </p>
       </h4>
       <h5>
         <div>
         <img src = {test} className = "Ground-Default" alt = "ground" />
         </div>
+        <Container triggerText={triggerText} onSubmit={onSubmit} />
         <div id = "compose">
           <button>compose email</button>
         </div>

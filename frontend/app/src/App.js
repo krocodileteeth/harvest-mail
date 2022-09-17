@@ -10,6 +10,15 @@ import {Container2} from './Container2.js';
 
 // actual creation of the website
 function App() {
+  let flatten_list = (l) => {
+    const l_out = [];
+    for (let i = 0; i < l.length; i = i + 1) {
+      for (let j = 0; j < l[i].length; j = j + 1) {
+        l_out.push(l[i][j]);
+      }
+    }
+    return l_out;
+  };
   
   // initialzing data
   const[data, setData] = useState({data: []});
@@ -111,11 +120,18 @@ function App() {
           </ul>
         </div>
         <p className = "Mail-content">
-          emails go here lmao
           <br/>
-          
+          {flatten_list(data).map(mail => {
+                return (
+                  <div key={mail.id}>
+                    <button>{mail.sender} &emsp; {mail.content}  &emsp;{mail.timestamp}</button>
+            <br/>
+          </div>
+        );
+          })}
+
             <div className = "email-click" >
-            <button>{data.Sender} &emsp; {data.Subject} &emsp; {data.Timestamp}</button>
+            {/* <button>{data.Sender} &emsp; {data.Subject} &emsp; {data.Timestamp}</button> */}
             </div>
             <br/>
         </p>

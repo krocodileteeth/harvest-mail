@@ -2,6 +2,7 @@
 import test from './pixelated_ground1.jpg';
 import './App.css';
 import React from "react";
+import Popup from './Popup';
 
 // actual creation of the website
 function App() {
@@ -47,6 +48,9 @@ function App() {
         </div>
         <div id = "compose">
           <button>compose email</button>
+          <Popup trigger={true}>
+            <h3>smack my ass like a drum</h3>
+          </Popup>
         </div>
       </h5>
 

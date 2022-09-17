@@ -43,3 +43,6 @@ class MailDatabase():
 
     def update_mail_by_id(self, id, key, value):
         pass
+
+    def get_new_id(self):
+        pass

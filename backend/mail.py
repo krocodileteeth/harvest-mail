@@ -30,17 +30,13 @@ class MailHandler():
     def handle_new_sent(self, mail):
         self.db.add_mail(mail)
 
-    def get_new_id(self):
-        self.curr_id += 1
-        return self.curr_id
-
     def get_status(self):
         all_mail = self.db.get_all_mail()
         all_mail_mapped = list(map(lambda x : x.toJSON(), all_mail))
         return jsonify(all_mail_mapped)
 
     def receive_mail(self, sender, receiver, subject, content, prev_id=-1):
-        mail = Mail(self.get_new_id(), sender, receiver, subject, content, prev_id=prev_id)
+        mail = Mail(self.db.get_new_id(), sender, receiver, subject, content, prev_id=prev_id)
         self.db.add_mail(mail)
 
     def read_mail(self):
@@ -49,10 +45,9 @@ class MailHandler():
         return id
 
     def send_mail(self):
-        mail = Mail(self.get_new_id(), read=True, **request.args)
+        mail = Mail(self.db.get_new_id(), read=True, **request.args)
 
         if 'prev_id' in request.args:
-            mail.prev_id = request.args.get('prev_id')
             self.handle_reply(mail)
         else:
             self.handle_new_sent(mail)

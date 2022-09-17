@@ -45,11 +45,16 @@ function App() {
     <div className="App">
       <header className="App-header">
       <h1>
-        Harvest Mail ! 
-        <input type="text" name="search" id="search" />
+        Harvest Mail ! &emsp;
+        <input type="text" name="search" size ="120" id="search" />
         <button>Search</button>
       </h1>
+      <br/>
+      <h4>
+      &emsp; &emsp; <button>mail</button>
+      </h4>
       </header>
+
     </div>
   );
 }

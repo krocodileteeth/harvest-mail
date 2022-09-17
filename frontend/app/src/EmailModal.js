@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Form from './Form';
+import { EmailForm } from './EmailForm.js'
 import FocusTrap from 'focus-trap-react';
 
-export const Modal = ({
+export const EmailModal = ({
+  data,
   onClickOutside,
   onKeyDown,
   modalRef,
@@ -38,8 +39,7 @@ export const Modal = ({
             </svg>
           </button>
           <div className="modal-body">
-            <Form onSubmit={onSubmit} />
-            
+            <EmailForm onSubmit={onSubmit} data = {data} />
           </div>
         </div>
       </aside>
@@ -48,4 +48,4 @@ export const Modal = ({
   );
 };
 
-export default Modal;
+export default EmailModal;

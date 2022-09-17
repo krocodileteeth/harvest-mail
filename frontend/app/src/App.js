@@ -2,13 +2,23 @@
 import test from './pixelated_ground1.jpg';
 import './App.css';
 import React, { useState, useEffect } from "react";
-
+import {Container} from './Container.js';
+import {Container2} from './Container2.js';
+import {EmailContainer} from './EmailContainer.js';
 // get server_url/mail/status : gives json objects 
 
 
 // actual creation of the website
 function App() {
-  
+  let flatten_list = (l) => {
+    const l_out = [];
+    for (let i = 0; i < l.length; i = i + 1) {
+      for (let j = 0; j < l[i].length; j = j + 1) {
+        l_out.push(l[i][j]);
+      }
+    }
+    return l_out;
+  };
   // initialzing data
   const[data, setData] = useState({data: []});
   const[data2, setData2] = useState({data2: []});
@@ -17,8 +27,6 @@ function App() {
   const openInNewTab = url => {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
-
-
 
   const handleClick = async () => {
     setIsLoading(true);
@@ -40,7 +48,6 @@ function App() {
       console.log('result is: ', JSON.stringify(result, null, 4));
 
       setData(result);
-
     } catch (err) {
       setErr(err.message);
     } finally {
@@ -78,12 +85,13 @@ function App() {
 
 
   const triggerText = "compose email";
+  const shopTrigger = "view shop";
+  const openTrigger = "open email";
   const onSubmit = (event) => {
     event.preventDefault(event);
     console.log(event.target.name.value);
     console.log(event.target.email.value);
   }
-
 
   useEffect(() => {
     fetch("/mail/status").then((res) =>
@@ -113,6 +121,9 @@ function App() {
       </header>
       <br/>
       <h4>      
+        <div id = "shop">
+          <button onClick={() => openInNewTab('https://www.amazon.com/s?k=flowers&i=amazon-devices&ref=nb_sb_noss')}> view shop </button>
+        </div>
         <div className = "email-click">
               {err && <h2>{err}</h2>}
 
@@ -142,7 +153,6 @@ function App() {
         </div>
         </h3>
         <p className = "Mail-content">
-          emails go here lmao
           <br/>
           {flatten_list(data).map(mail => {
                 return (

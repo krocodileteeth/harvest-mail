@@ -25,9 +25,6 @@ function App() {
   const[data, setData] = useState({data: []});
   const[isLoading, setIsLoading] = useState(false);
   const[err, setErr] = useState('');
-  // const openInNewTab = url => {
-  //   window.open(url, '_blank', 'noopener,noreferrer');
-  // };
 
   const handleClick = async () => {
     setIsLoading(true);
@@ -69,17 +66,6 @@ function App() {
   useEffect(() => {
     fetch("/mail/status").then((res) =>
     res.json().then((data) => {
-        // Setting a data from api
-        // setdata(git swicd{
-        //     id: data.id,
-        //     sender: data.sender,
-        //     receiver: data.receiver,
-        //     content: data.content,
-        //     read: data.read,
-        //     next_id: data.next_id,
-        //     prev_id: data.prev_id,
-        //     timestamp: data.timestamp
-        //   });
         document.title = data;
         console.log(data);
       })
@@ -99,9 +85,6 @@ function App() {
       </header>
       <br/>
       <h4>      
-        {/* <div id = "shop">
-          <button onClick={() => openInNewTab('https://google.com')}> view shop </button>
-        </div> */}
         <div className = "email-click">
               {err && <h2>{err}</h2>}
 
@@ -136,7 +119,6 @@ function App() {
           })}
 
             <div className = "email-click" >
-            {/* <button>{data.Sender} &emsp; {data.Subject} &emsp; {data.Timestamp}</button> */}
             </div>
             <br/>
         </p>

@@ -2,6 +2,7 @@
   margin : 0;
   padding : 2;
 }
+
 .App {
   background-color: #282c34;
   min-height: 100vh;
@@ -24,6 +25,7 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
 
 /*
 .Mail-content {
@@ -76,8 +78,20 @@
   height: 40vmin;
   pointer-events: none;
 }
+*/
+
+.Ground-Default {
+  border-radius: 30px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  margin-top: 2%;
+  height: 150px;
+}
 
 
+/*
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -96,7 +110,9 @@
     transform: rotate(360deg);
   }
 }
+
 */
+
 
 
 

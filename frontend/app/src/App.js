@@ -1,9 +1,11 @@
 // import logo from './logo.svg';
+import test from './pixelated_ground1.jpg';
 import './App.css';
 import React from "react";
 
 // actual creation of the website
 function App() {
+
  // replace button with calling data to it. event listens to if theres a new email
   return (
     <div className="App">
@@ -36,6 +38,11 @@ function App() {
           <br/>
         </p>
       </h4>
+      <h5>
+        <div>
+        <img src = {test} className = "Ground-Default" alt = "ground" />
+        </div>
+      </h5>
 
     </div>
   );

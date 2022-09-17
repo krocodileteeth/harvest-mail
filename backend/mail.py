@@ -1,5 +1,6 @@
 from flask import Flask, request
 import database
+import time
 class Mail():
     def __init__(self, id, sender, receiver, subject, content, next_id=-1, prev_id=-1, read=False):
         self.id = id
@@ -8,6 +9,9 @@ class Mail():
         self.subject = subject
         self.content = content
         self.read = read
+        self.next_id = next_id
+        self.prev_id = prev_id
+        self.timestamp = time.time()
 
 class MailHandler():
     def __init__(self, db_file):

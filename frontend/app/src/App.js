@@ -5,6 +5,8 @@ import React, { useState, useEffect } from "react";
 import {Container} from './Container.js';
 import {Container2} from './Container2.js';
 import {EmailContainer} from './EmailContainer.js';
+//import 'bootstrap/dist/css/bootstrap.min.css';
+
 // get server_url/mail/status : gives json objects 
 
 

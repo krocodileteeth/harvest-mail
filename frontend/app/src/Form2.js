@@ -8,7 +8,16 @@ export const Form2 = ({ onSubmit }) => {
       </div>
       <div className="form-group">
         <button className="form-control btn btn-primary" type="submit">
-          Submit
+          buy flowers
+        </button>
+        <button className="form-control btn btn-primary" type="submit">
+          buy wat er
+        </button>
+        <button className="form-control btn btn-primary" type="submit">
+          buy gnomes
+        </button>
+        <button className="form-control btn btn-primary" type="submit">
+          buy background
         </button>
       </div>
     </form>

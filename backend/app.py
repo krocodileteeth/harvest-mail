@@ -12,9 +12,9 @@ GAME_DATABASE = 'game.db'
 app = Flask(__name__)
 CORS(app)
 
-game = GameHandler(GAME_DATABASE)
+# game = GameHandler(GAME_DATABASE)
 game = GameHandler(':memory:')
-mail = MailHandler(MAIL_DATABASE, game)
+# mail = MailHandler(MAIL_DATABASE, game)
 mail = MailHandler(':memory:', game)
 
 @app.route('/')
